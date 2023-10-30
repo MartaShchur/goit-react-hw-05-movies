@@ -4,11 +4,10 @@ import { fetchTrending } from 'services/TmbdApi';
 import Loader from 'components/Loader/Loader';
 
 const Home = () => {
-    const [films, setFilms] = useState([]);
-    const [loading, setLoading] = useState(false);
+  const [films, setFilms] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-
-    useEffect(() => {
+  useEffect(() => {
     const fetchTrendingFilms = () => {
       setLoading(true);
 
@@ -24,18 +23,18 @@ const Home = () => {
         });
     };
 
-fetchTrendingFilms();
-    }, []);
+    fetchTrendingFilms();
+  }, []);
 
-return (
+  return (
     <main>
-        <h1>Trending today</h1>
-        <EditorList films={films} />
-        {loading && <Loader />}
+      <h1>Trending today</h1>
+      <EditorList films={films} />
+
+      {loading && <Loader />}
     </main>
-);
+  );
 };
 
 export default Home;
-
 
