@@ -4,19 +4,19 @@ import { List, Item, MovieLink } from './EditorList.styled';
 
 
 const EditorList = ({ films }) => {
-    const location = useLocation();
+  const location = useLocation();
 
-    return (
-        <List>
-            {films.map(film => (
-                <Item key={film.id}>
-                    <MovieLink to={`/movie/${film.id}`} state={{ from: location }}>
-                        {film.title}
-                    </MovieLink>
-                </Item>
-            ))}
-        </List>
-    );
+  return (
+    <List>
+      {films.map(film => (
+        <Item key={film.id}>
+          <MovieLink to={`/movies/${film.id}`} state={{ from: location }}>
+            {film.title}
+          </MovieLink>
+        </Item>
+      ))}
+    </List>
+  );
 };
 
 EditorList.propTypes = {
