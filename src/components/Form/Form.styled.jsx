@@ -5,17 +5,17 @@ export const InputSearch = styled.input`
   font-size: 18px;
   line-height: 27px;
 
-  padding: 15px 16px;
+  padding: 10px 16px;
 
-  color: rgba(255, 255, 255, 0.2);
+  /* color:#2b2b2b; */
 
-  background: #2b2b2b;
+  /* background: #2b2b2b; */
   border-radius: 10px;
 
   :active,
   :focus,
   :hover {
-    color: white;
+    color: #2b2b2b;
   }
 `;
 
@@ -25,16 +25,12 @@ export const ButtonSearch = styled.button`
   line-height: 27px;
 
   margin-left: 12px;
-  padding: 15px 16px;
-
-  color: rgba(255, 255, 255, 0.2);
-
-  background: #2b2b2b;
+  padding: 10px 16px;
   border-radius: 10px;
 
   :not(:disabled):active,
   :focus,
   :not(:disabled):hover {
-    color: white;
+    color: #2b2b2b;
   }
 `;

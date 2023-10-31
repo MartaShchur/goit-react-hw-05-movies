@@ -7,7 +7,7 @@ export const ItemFilms = styled.li`
   font-weight: 400;
   font-size: 14px;
 
-  background-color: #2a2a2a;
+  /* background-color: #2a2a2a; */
   border-radius: 14px;
 
   :not(:last-child) {
@@ -22,6 +22,6 @@ export const ItemFilms = styled.li`
 
   a {
     display: block;
-    padding: 16px 16px;
+    /* padding: 16px 16px; */
   }
 `;

@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import { Container, NavItem, NavList, Navigation } from './Layout.styled';
+import { Container, NavList, Navigation } from './Layout.styled';
 
 export const Layout = () => {
    return (
@@ -8,16 +8,12 @@ export const Layout = () => {
       <header>
         <Navigation>
           <NavList>
-            <NavItem>
               <Link to="/">
-                Home<span>.</span>
+                Home
               </Link>
-            </NavItem>
-            <NavItem>
               <Link to="/movies">
-                Movies<span>.</span>
+                Movies
               </Link>
-            </NavItem>
           </NavList>
         </Navigation>
       </header>

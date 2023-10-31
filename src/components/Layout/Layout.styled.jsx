@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  padding: 25px;
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 `;
 export const Navigation = styled.nav`
   margin-bottom: 24px;
@@ -10,10 +14,10 @@ export const NavList = styled.ul`
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 20px;
 
   display: flex;
-  gap: 18px;
+  gap:30px;
   padding: 14px;
 
   background: rgba(255, 255, 255, 0.1);
@@ -22,16 +26,3 @@ export const NavList = styled.ul`
   border-radius: 20px;
 `;
 
-export const NavItem = styled.li`
-  span {
-    color: #ffc700;
-  }
-
-  a:hover,
-  a:focus {
-    color: #ffc700;
-    span {
-      color: white;
-    }
-  }
-`;
