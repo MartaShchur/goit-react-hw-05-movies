@@ -1,35 +1,33 @@
 import { useState } from "react";
-import PropTypes from 'prop-types'
-import { SearchForm, Input, Button } from './Form.styled';
+import { InputSearch, ButtonSearch } from './Form.styled';
 
-const Form = ({ searchMovies }) => {
+const Form = ({ setSearchParams }) => {
   const [query, setQuery] = useState('');
 
-  const handleInputChange = event => {
-    setQuery(event.target.value);
+  const handleSubmit = evt => {
+    evt.preventDefault();
+
+    setSearchParams({ query });
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    searchMovies(query.toLowerCase());
+  const handleSearchParams = ({ target: { value } }) => {
+    setQuery(value);
   };
 
   return (
-    <SearchForm onSubmit={handleSubmit}>
-      <Input
+    <form onSubmit={handleSubmit}>
+      <InputSearch
         type="text"
-        name="query"
+        placeholder="Name movie"
         autoFocus
         value={query}
-        onChange={handleInputChange}
+        onChange={handleSearchParams}
       />
-      <Button type="submit">Search</Button>
-    </SearchForm>
+      <ButtonSearch type="submit" disabled={!query}>
+        Search
+      </ButtonSearch>
+    </form>
   );
-};
-
-Form.propTypes = {
-  searchMovies: PropTypes.func.isRequired,
 };
 
 export default Form;

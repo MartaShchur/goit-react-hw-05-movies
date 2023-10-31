@@ -1,39 +1,33 @@
-import { useState } from 'react';
-import Loader from 'components/Loader/Loader';
-import EditorList from 'pages/EditorList/EditorList';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import FilmsList from 'components/FilmsList/FilmsList';
 import Form from 'components/Form/Form';
-import { fetchSearchByKeyword } from 'services/TmbdApi';
+import { getMovieByQuery } from 'services/TmbdApi';
 
 const Movies = () => {
-  const [searchFilms, setSearchFilms] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [noMoviesText, setNoMoviesText] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const searchMovies = queryMovie => {
-    setLoading(true);
+  useEffect(() => {
+    const currentQuery = searchParams.get('query');
+    if (!currentQuery) return;
 
-    fetchSearchByKeyword(queryMovie)
-      .then(searchResults => {
-        setSearchFilms(searchResults);
-        setNoMoviesText(searchResults.length === 0);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+    const fetchMovieByQuery = async () => {
+      try {
+        const movieByQuery = await getMovieByQuery(currentQuery);
+        setMovies(movieByQuery);
+      } catch (evt) {
+        console.log(evt);
+      }
+    };
+    fetchMovieByQuery();
+  }, [searchParams]);
 
   return (
-    <main>
-      <Form searchMovies={searchMovies} />
-      {loading && <Loader />}
-      {noMoviesText && (
-        <p>There is no movies with this request. Please, try again</p>
-      )}
-      {searchFilms && <EditorList films={searchFilms} />}
-    </main>
+    <>
+      <Form setSearchParams={setSearchParams} />
+      {movies.length > 0 && <FilmsList movies={movies} />}
+    </>
   );
 };
 

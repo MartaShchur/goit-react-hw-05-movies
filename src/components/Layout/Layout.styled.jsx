@@ -1,29 +1,37 @@
 import styled from '@emotion/styled';
-import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
-  max-width: 1170px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 25px;
 `;
-
-export const Header = styled.header`
-  border-bottom: solid 1px grey;
-  margin-bottom: 20px;
+export const Navigation = styled.nav`
+  margin-bottom: 24px;
 `;
+export const NavList = styled.ul`
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
 
-export const Link = styled(NavLink)`
-  display: inline-block;
-  text-decoration: none;
+  display: flex;
+  gap: 18px;
   padding: 14px;
-  margin-left: 10px;
-  font-weight: 600;
-  font-size: 22px;
-  color: #191d1e;
 
-  &:hover {
-    color: tomato;
+  background: rgba(255, 255, 255, 0.1);
+  background-blend-mode: overlay;
+  backdrop-filter: blur(50px);
+  border-radius: 20px;
+`;
+
+export const NavItem = styled.li`
+  span {
+    color: #ffc700;
+  }
+
+  a:hover,
+  a:focus {
+    color: #ffc700;
+    span {
+      color: white;
+    }
   }
 `;

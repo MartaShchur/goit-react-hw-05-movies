@@ -1,40 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import EditorList from 'pages/EditorList/EditorList';
-import { fetchTrending } from 'services/TmbdApi';
-import Loader from 'components/Loader/Loader';
+import { useEffect, useState } from 'react';
+
+import { getTrendingMovies } from 'services/TmbdApi';
+
+import FilmsList from 'components/FilmsList/FilmsList';
 
 const Home = () => {
-  const [films, setFilms] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    const fetchTrendingFilms = () => {
-      setLoading(true);
-
-      fetchTrending()
-        .then(trendingFilms => {
-          setFilms(trendingFilms);
-        })
-        .catch(error => {
-          console.log(error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    };
-
-    fetchTrendingFilms();
+    getTrendingMovies('').then(setMovies);
   }, []);
 
   return (
-    <main>
+    <>
       <h1>Trending today</h1>
-      <EditorList films={films} />
-
-      {loading && <Loader />}
-    </main>
+      <FilmsList movies={movies} />
+    </>
   );
 };
 
 export default Home;
-

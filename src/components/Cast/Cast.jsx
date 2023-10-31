@@ -1,55 +1,55 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchActors } from 'services/TmbdApi';
+import { getCastMovie } from 'services/TmbdApi';
 import { List, Text } from './Cast.styled';
-import Loader from 'components/Loader/Loader';
+// import Loader from 'components/Loader/Loader';
+
+export const BASE_POSTER_URL = 'https://image.tmdb.org/t/p/w500/';
+export const PLACEHOLDER = 'https://via.placeholder.com/182x273';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const [actors, setActors] = useState([]);
-  const [loading, setLoading] = useState(false);
-
+  const [cast, setCast] = useState([]);
+// const [loading, setLoading] = useState(false);
+  
   useEffect(() => {
-    const onActorsOfMovie = () => {
-      setLoading(true);
-
-      fetchActors(movieId)
-        .then(actors => {
-          setActors(actors);
-        })
-        .catch(error => {
-          console.log(error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+    const fetchCast = async () => {
+      try {
+        const cast = await getCastMovie(movieId);
+        setCast(cast);
+      } catch (evt) {
+        console.log(evt);
+      }
     };
-
-    onActorsOfMovie();
+    fetchCast();
   }, [movieId]);
 
   return (
-    <div>
-      {loading && <Loader />}
-
-      <List>
-        {actors.map(({ id, profile_path, original_name, name, character }) => (
-          <li key={id}>
-            <img
-              width="200px"
-              src={
-                profile_path
-                  ? `https://image.tmdb.org/t/p/w500${profile_path}`
-                  : `https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg`
-              }
-              alt={original_name}
-            />
-            <Text>{name}</Text>
-            <Text>Character: {character}</Text>
-          </li>
-        ))}
-      </List>
-    </div>
+    <>
+      {
+        <List>
+          {cast.map(({ id, profile_path, original_name, character }) => (
+            <Text key={id}>
+              <img
+                src={`${
+                  profile_path
+                    ? BASE_POSTER_URL + profile_path
+                    : PLACEHOLDER + '?text=' + original_name
+                }`}
+                alt={original_name}
+              />
+              <p>
+                <span> Actor:</span> {original_name}
+              </p>
+              <p>
+                <span>Character:</span> {character}
+              </p>
+            </Text>
+          ))}
+        </List>
+      }
+    </>
   );
 };
+
 export default Cast;

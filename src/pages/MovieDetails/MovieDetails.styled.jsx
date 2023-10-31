@@ -1,55 +1,102 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
 
-export const Container = styled.div`
-  display: flex;
-  margin: 24px;
-  gap: 24px;
-`;
+export const GoBackLink = styled.span`
+  a {
+    position: relative;
+    padding-left: 12px;
+  }
 
-export const List = styled.ul`
-  display: inline-flex;
-  gap: 12px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-`;
+  a::before {
+    content: '';
+    display: block;
 
-export const ListInfo = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-`;
+    border-color: #ffc700;
+    border-style: solid;
+    border-width: 0 0 2px 2px;
+    height: 6px;
+    left: 0;
+    position: absolute;
+    width: 6px;
+    margin-top: -4px;
+    top: 50%;
 
-export const LinkInfo = styled(Link)`
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 18px;
-  color: #191d1e;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
 
-  &:hover {
-    color: tomato;
+  span {
+    color: #ffc700;
+  }
+
+  :hover,
+  :focus {
+    color: #ffc700;
+    a::before {
+      border-color: white;
+    }
+    span {
+      color: white;
+    }
   }
 `;
 
-export const Button = styled.button`
-  padding: 8px 8px;
-  font: inherit;
-  cursor: pointer;
-  border-radius: 4px;
-  border: 3px solid #191d1e;
-  color: #191d1e;
-  font-weight: 600;
-  font-size: 20px;
-  border-radius: 4px 8px;
+export const FilmWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+`;
 
-  &:hover {
-    color: tomato;
-    border: 3px solid tomato;
+export const FilmImg = styled.img`
+  max-width: 182px;
+  background: #424242;
+  border-radius: 15px;
+`;
+
+export const FilmTitle = styled.h2`
+  font-size: 26px;
+  margin-bottom: 12px;
+`;
+
+export const FilmSubTitle = styled.h3`
+  font-size: 16px;
+  margin-bottom: 6px;
+`;
+
+export const FilmDescr = styled.p`
+  font-size: 16px;
+  color: #888888;
+  margin-bottom: 12px;
+`;
+
+export const StyledListDescr = styled.ul`
+  font-size: 16px;
+  display: flex;
+  gap: 18px;
+  padding: 0;
+
+  border-radius: 20px;
+  color: #888888;
+  margin-bottom: 12px;
+`;
+export const StyledList = styled.ul`
+  display: flex;
+  gap: 18px;
+  padding: 14px;
+
+  border-radius: 20px;
+`;
+export const ListItem = styled.li`
+  span {
+    color: #ffc700;
+  }
+
+  a:hover,
+  a:focus,
+  a:active {
+    color: #ffc700;
+    span {
+      color: white;
+    }
   }
 `;

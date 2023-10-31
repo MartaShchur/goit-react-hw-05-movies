@@ -1,52 +1,37 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchReviews } from 'services/TmbdApi';
-import Loader from 'components/Loader/Loader';
-import { List } from './Reviews.styled';
+import { getReviewsMovie } from 'services/TmbdApi';
+import { ListItem, StyledList, ReviewsDescr } from './Reviews.styled';
 
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchReviewsFilms = () => {
-      setLoading(true);
-
-      fetchReviews(movieId)
-        .then(reviews => {
-          setReviews(reviews);
-        })
-        .catch(error => {
-          console.log(error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+    const fetchReviews = async () => {
+      try {
+        const Reviews = await getReviewsMovie(movieId);
+        setReviews(Reviews);
+      } catch (e) {
+        console.log(e);
+      }
     };
-
-    fetchReviewsFilms();
+    fetchReviews();
   }, [movieId]);
 
-  return (
-    <>
-      {loading && <Loader />}
-      {reviews.length !== 0 && (
-        <div>
-          <List>
-            {reviews.map(review => (
-              <li key={review.id}>
-                <h2>Author: {review.author}</h2>
-                <p>{review.content}</p>
-              </li>
-            ))}
-          </List>
-        </div>
-      )}
-      {reviews.length === 0 && (
-        <div>We don't have any reviews for this movie</div>
-      )}
-    </>
+  return reviews.length === 0 ? (
+    <h3>No Reviews.</h3>
+  ) : (
+    <StyledList>
+      {reviews.map(({ id, author, content }) => (
+        <ListItem key={id}>
+          <p>
+            <span>Author:</span> {author}
+          </p>
+          <ReviewsDescr>{content}</ReviewsDescr>
+        </ListItem>
+      ))}
+    </StyledList>
   );
 };
 

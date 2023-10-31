@@ -1,41 +1,40 @@
 import styled from '@emotion/styled';
 
-export const SearchForm = styled.form`
-  display: flex;
-  align-items: center;
-`;
+export const InputSearch = styled.input`
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
 
-export const Input = styled.input`
-  padding: 12px 14px;
-  font: inherit;
-  cursor: pointer;
-  border-radius: 4px;
-  border: 3px solid #191d1e;
-  font-weight: 600;
-  font-size: 20px;
-  margin-right: 10px;
-  border-radius: 4px 8px;
-  outline: none;
+  padding: 15px 16px;
 
-  &:hover {
-    color: tomato;
-    border: 3px solid tomato;
+  color: rgba(255, 255, 255, 0.2);
+
+  background: #2b2b2b;
+  border-radius: 10px;
+
+  :active,
+  :focus,
+  :hover {
+    color: white;
   }
 `;
 
-export const Button = styled.button`
-  padding: 12px 12px;
-  font: inherit;
-  cursor: pointer;
-  border-radius: 4px;
-  border: 3px solid #191d1e;
-  color: #191d1e;
-  font-weight: 600;
-  font-size: 20px;
-  border-radius: 4px 8px;
+export const ButtonSearch = styled.button`
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
 
-  &:hover {
-    color: tomato;
-    border: 3px solid tomato;
+  margin-left: 12px;
+  padding: 15px 16px;
+
+  color: rgba(255, 255, 255, 0.2);
+
+  background: #2b2b2b;
+  border-radius: 10px;
+
+  :not(:disabled):active,
+  :focus,
+  :not(:disabled):hover {
+    color: white;
   }
 `;
